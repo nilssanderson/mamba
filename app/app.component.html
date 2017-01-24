@@ -1,2 +1,11 @@
-<h1>Hello {{name}}</h1>
-<fa-other></fa-other>
+<div class="container">
+    <!-- interpolation - render the title property to the browser -->
+    <!-- 1 way data-binding - using ngModel built in directive -->
+    <h1>{{title}}</h1>
+
+    <nav>
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

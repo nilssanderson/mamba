@@ -1,0 +1,31 @@
+<h2>My Heroes</h2>
+<div>
+    <label>Hero name:</label> <input #heroName />
+    <button (click)="add(heroName.value); heroName.value=''">Add</button>
+</div>
+<ul class="heroes list-item-group">
+    <!-- ngFor directive iterates over the heroes array returned
+    by the AppComponent.heroes property and stamps out instances of this template. -->
+    <!-- class.selected is surrounded in square brackets ([]). This is the syntax
+    for a property binding, a binding in which data flows one way from the data source
+    (the expression hero === selectedHero) to a property of class. -->
+    <li
+        *ngFor="let hero of heroes"
+        class="list-item"
+        [class.selected]="hero === selectedHero"
+        (click)="onSelect(hero)">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+
+        <!-- In addition to calling the component's delete method,
+        the delete button click handling code stops the propagation of the click event,
+        we don't want the <li> click handler to be triggered
+        because that would select the hero that we are going to delete! -->
+        <button class="delete" (click)="delete(hero); $event.stopPropagation()">x</button>
+    </li>
+</ul>
+
+<!-- hide the empty detail with ngIf -->
+<div *ngIf="selectedHero">
+    <h2>{{selectedHero.name | uppercase}} is my hero</h2>
+    <button (click)="goToDetail()">View Details</button>
+</div>
